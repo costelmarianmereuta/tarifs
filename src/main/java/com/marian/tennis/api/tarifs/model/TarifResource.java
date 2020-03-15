@@ -1,18 +1,18 @@
 package com.marian.tennis.api.tarifs.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TarifResource
@@ -29,44 +29,38 @@ public class TarifResource implements Serializable {
   
 
 
-  @JsonProperty("id")
-  private Long id;
-
-  
-
-
   @JsonProperty("name")
   private String name;
 
   
-  @Valid
 
 
   @JsonProperty("prix")
-  private BigDecimal prix;
+  private Float prix;
 
   
   @Valid
-
-
+//  @JsonDeserialize(using = LocalDateDeserializer.class)
+//  @JsonSerialize(using = LocalDateSerializer.class)
   @JsonProperty("startDate")
   private LocalDate startDate;
 
+
   
   @Valid
-
-
   @JsonProperty("endDate")
+//  @JsonDeserialize(using = LocalDateDeserializer.class)
+//  @JsonSerialize(using = LocalDateSerializer.class)
   private LocalDate endDate;
 
   
-
+@Pattern(regexp="(?:[01]\\d|2[0123]):(?:[012345]\\d)") 
 
   @JsonProperty("startTime")
   private String startTime;
 
   
-
+@Pattern(regexp="(?:[01]\\d|2[0123]):(?:[012345]\\d)") 
 
   @JsonProperty("endTime")
   private String endTime;
@@ -95,4 +89,17 @@ public class TarifResource implements Serializable {
   @JsonProperty("defaultTarif")
   private Boolean defaultTarif;
 
+  
+  @Valid
+  @JsonProperty("terrains")
+  private List<Terrain> terrains;
+
+
+	public TarifResource addTerrainsItem(Terrain terrainsItem) {
+		if (this.terrains == null) {
+		this.terrains = new ArrayList<>();
+		}
+	this.terrains.add(terrainsItem);
+	return this;
+	}
 }
