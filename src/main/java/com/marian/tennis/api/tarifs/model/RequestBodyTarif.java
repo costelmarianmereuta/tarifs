@@ -1,12 +1,7 @@
 package com.marian.tennis.api.tarifs.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,83 +23,84 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class RequestBodyTarif implements Serializable {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
     @NotNull
 
 
-    @JsonProperty("name")
-    private String name;
+
+  @JsonProperty("name")
+  private String name;
 
     @NotNull
 
 
-    @JsonProperty("prix")
-    private Float prix;
+
+  @JsonProperty("prix")
+  private Float prix;
 
     @NotNull
 
-    @Valid
+  @Valid
 
 
-    @JsonProperty("startDate")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate startDate;
+  @JsonProperty("startDate")
+  private LocalDate startDate;
 
     @NotNull
 
-    @Valid
+  @Valid
 
 
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonProperty("endDate")
-    private LocalDate endDate;
+  @JsonProperty("endDate")
+  private LocalDate endDate;
 
     @NotNull
 
-    @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
+@Pattern(regexp="(?:[01]\\d|2[0123]):(?:[012345]\\d)") 
 
-
-    @JsonProperty("startTime")
-    private String startTime;
+  @JsonProperty("startTime")
+  private String startTime;
 
     @NotNull
 
-    @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
+@Pattern(regexp="(?:[01]\\d|2[0123]):(?:[012345]\\d)") 
 
-    @JsonProperty("endTime")
-    private String endTime;
+  @JsonProperty("endTime")
+  private String endTime;
 
     @NotNull
 
 
-    @JsonProperty("weekend")
-    private Boolean weekend = false;
+
+  @JsonProperty("weekend")
+  private Boolean weekend = false;
 
     @NotNull
 
 
-    @JsonProperty("actif")
-    private Boolean actif = false;
+
+  @JsonProperty("actif")
+  private Boolean actif = false;
 
     @NotNull
 
 
-    @JsonProperty("specialTarif")
-    private Boolean specialTarif = false;
+
+  @JsonProperty("specialTarif")
+  private Boolean specialTarif = false;
 
     @NotNull
 
 
-    @JsonProperty("defaultTarif")
-    private Boolean defaultTarif = false;
+
+  @JsonProperty("defaultTarif")
+  private Boolean defaultTarif = false;
+
+  
 
 
-    @JsonProperty("nameTerrain")
-    private String nameTerrain;
+  @JsonProperty("nameTerrain")
+  private String nameTerrain;
 
 }

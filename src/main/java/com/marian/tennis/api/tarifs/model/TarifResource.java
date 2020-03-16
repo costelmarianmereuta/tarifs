@@ -1,18 +1,20 @@
 package com.marian.tennis.api.tarifs.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.marian.tennis.api.tarifs.model.Terrain;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import java.io.Serializable;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * TarifResource
@@ -40,17 +42,16 @@ public class TarifResource implements Serializable {
 
   
   @Valid
-//  @JsonDeserialize(using = LocalDateDeserializer.class)
-//  @JsonSerialize(using = LocalDateSerializer.class)
+
+
   @JsonProperty("startDate")
   private LocalDate startDate;
 
-
   
   @Valid
+
+
   @JsonProperty("endDate")
-//  @JsonDeserialize(using = LocalDateDeserializer.class)
-//  @JsonSerialize(using = LocalDateSerializer.class)
   private LocalDate endDate;
 
   
@@ -91,6 +92,8 @@ public class TarifResource implements Serializable {
 
   
   @Valid
+
+
   @JsonProperty("terrains")
   private List<Terrain> terrains;
 
