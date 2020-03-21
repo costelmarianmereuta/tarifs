@@ -8,14 +8,14 @@ import org.springframework.hateoas.client.LinkDiscoverer;
 import org.springframework.hateoas.client.LinkDiscoverers;
 import org.springframework.hateoas.mediatype.collectionjson.CollectionJsonLinkDiscoverer;
 import org.springframework.plugin.core.SimplePluginRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 @Configuration
-public class TarifsApplication extends WebMvcConfigurerAdapter {
+public class TarifsApplication implements WebMvcConfigurer {
 
     public static void main(String[] args) {
         SpringApplication.run(TarifsApplication.class, args);

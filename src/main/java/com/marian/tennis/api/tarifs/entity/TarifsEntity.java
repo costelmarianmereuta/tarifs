@@ -14,7 +14,8 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Entity
-@Table(name = "tarifs")
+@Table(name = "tarifs", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "name", name = "name")})
 @Builder
 @Data
 @NoArgsConstructor
@@ -27,7 +28,7 @@ public class TarifsEntity {
     @GeneratedValue
     private Integer idTarif;
     @NotNull
-    @Column(name = "name",unique = true)
+    @Column(name = "name")
     private String name;
     @NotNull
     @Column(name = "prix")
@@ -35,10 +36,8 @@ public class TarifsEntity {
     @Column(name = "start_date")
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @NotNull
-//    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "end_date")
     private LocalDate endDate;
