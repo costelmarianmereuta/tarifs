@@ -1,0 +1,9 @@
+com\marian\tennis\api\tarifs\model\RequestBodyTarif.class
+com\marian\tennis\api\tarifs\model\Error$ErrorBuilder.class
+com\marian\tennis\api\tarifs\model\TarifResource.class
+com\marian\tennis\api\tarifs\TarifsApplication.class
+com\marian\tennis\api\tarifs\model\TarifResource$TarifResourceBuilder.class
+com\marian\tennis\api\tarifs\model\RequestBodyTarif$RequestBodyTarifBuilder.class
+com\marian\tennis\api\tarifs\model\Error.class
+com\marian\tennis\api\tarifs\model\Terrain$TerrainBuilder.class
+com\marian\tennis\api\tarifs\model\Terrain.class
