@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TarifRepository extends JpaRepository<TarifsEntity,Long> {
-
+    TarifsEntity findByName(String name);
 }

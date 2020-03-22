@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-
 /**
  * Terrain
  */
@@ -18,7 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Terrain implements Serializable {
+public class Terrain extends RepresentationModel<Terrain> implements Serializable {
   private static final long serialVersionUID = 1L;
 
   

@@ -32,7 +32,7 @@ public class TarifsEntity {
     private String name;
     @NotNull
     @Column(name = "prix")
-    private double prix;
+    private float prix;
     @Column(name = "start_date")
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")

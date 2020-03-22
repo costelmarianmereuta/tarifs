@@ -27,7 +27,9 @@ import javax.xml.bind.annotation.*;
 {{/withXml}}
 {{^parent}}
 {{/parent}}
-
+{{#hateoas}}
+import org.springframework.hateoas.RepresentationModel;
+{{/hateoas}}
 {{#models}}
 {{#model}}
 {{#isEnum}}

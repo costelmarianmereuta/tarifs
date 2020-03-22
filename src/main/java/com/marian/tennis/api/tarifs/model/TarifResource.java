@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -13,7 +14,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * TarifResource
  */
@@ -23,7 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class TarifResource implements Serializable {
+public class TarifResource extends RepresentationModel<TarifResource> implements Serializable {
   private static final long serialVersionUID = 1L;
 
   
