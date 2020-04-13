@@ -3,6 +3,7 @@ package com.marian.tennis.api.tarifs.service;
 import com.marian.tennis.api.tarifs.entity.TarifsEntity;
 import com.marian.tennis.api.tarifs.model.RequestBodyTarif;
 import com.marian.tennis.api.tarifs.repositories.TarifRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -38,10 +39,14 @@ public class TarifService {
                 .actif(requestBodyTarif.getActif())
                 .specialTarif(requestBodyTarif.getSpecialTarif())
                 .defaultTarif(requestBodyTarif.getDefaultTarif())
-                //todo implement when terrains are ready add terrains with check
                 .build();
 
-        tarifsRepository.save(tarifsEntity);
+        try {
+            tarifsRepository.save(tarifsEntity);
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex.getCause());
+        }
+
 
         return tarifsEntity;
     }
@@ -57,7 +62,5 @@ public class TarifService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, TARIF_NOT_FOUND);
         }
-
-
     }
 }

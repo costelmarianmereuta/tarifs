@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * TarifResource
  */
@@ -24,83 +25,70 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class TarifResource extends RepresentationModel<TarifResource> implements Serializable {
-  private static final long serialVersionUID = 1L;
-
-  
+    private static final long serialVersionUID = 1L;
 
 
-  @JsonProperty("name")
-  private String name;
-
-  
+    @JsonProperty("name")
+    private String name;
 
 
-  @JsonProperty("prix")
-  private Float prix;
-
-  
-  @Valid
+    @JsonProperty("prix")
+    private Float prix;
 
 
-  @JsonProperty("startDate")
-  private LocalDate startDate;
+    @Valid
 
-  
-  @Valid
-
-
-  @JsonProperty("endDate")
-  private LocalDate endDate;
-
-  
-@Pattern(regexp="(?:[01]\\d|2[0123]):(?:[012345]\\d)") 
-
-  @JsonProperty("startTime")
-  private String startTime;
-
-  
-@Pattern(regexp="(?:[01]\\d|2[0123]):(?:[012345]\\d)") 
-
-  @JsonProperty("endTime")
-  private String endTime;
-
-  
+    @JsonProperty("startDate")
+    private LocalDate startDate;
 
 
-  @JsonProperty("weekend")
-  private Boolean weekend;
-
-  
+    @Valid
 
 
-  @JsonProperty("actif")
-  private Boolean actif;
-
-  
+    @JsonProperty("endDate")
+    private LocalDate endDate;
 
 
-  @JsonProperty("specialTarif")
-  private Boolean specialTarif;
+    @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
 
-  
-
-
-  @JsonProperty("defaultTarif")
-  private Boolean defaultTarif;
-
-  
-  @Valid
+    @JsonProperty("startTime")
+    private String startTime;
 
 
-  @JsonProperty("terrains")
-  private List<Terrain> terrains;
+    @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
+
+    @JsonProperty("endTime")
+    private String endTime;
 
 
-	public TarifResource addTerrainsItem(Terrain terrainsItem) {
-		if (this.terrains == null) {
-		this.terrains = new ArrayList<>();
-		}
-	this.terrains.add(terrainsItem);
-	return this;
-	}
+    @JsonProperty("weekend")
+    private Boolean weekend;
+
+
+    @JsonProperty("actif")
+    private Boolean actif;
+
+
+    @JsonProperty("specialTarif")
+    private Boolean specialTarif;
+
+
+    @JsonProperty("defaultTarif")
+    private Boolean defaultTarif;
+
+
+    @Valid
+
+
+    @JsonProperty("terrains")
+    private List<Terrain> terrains;
+
+
+    public TarifResource addTerrainsItem(Terrain terrainsItem) {
+        if (this.terrains == null) {
+            this.terrains = new ArrayList<>();
+        }
+        this.terrains.add(terrainsItem);
+        return this;
+    }
 }
