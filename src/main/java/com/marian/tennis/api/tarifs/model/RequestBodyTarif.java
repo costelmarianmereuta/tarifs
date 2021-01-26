@@ -25,14 +25,13 @@ import java.time.LocalDate;
 public class RequestBodyTarif extends RepresentationModel<RequestBodyTarif> implements Serializable {
   private static final long serialVersionUID = 1L;
 
-    @NotNull
-
+  @NotNull
 
 
   @JsonProperty("name")
   private String name;
 
-    @NotNull
+  @NotNull
 
 
 

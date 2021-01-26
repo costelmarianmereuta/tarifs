@@ -15,6 +15,7 @@ import org.springframework.hateoas.client.LinkDiscoverers;
 import org.springframework.hateoas.mediatype.collectionjson.CollectionJsonLinkDiscoverer;
 import org.springframework.plugin.core.SimplePluginRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 @SpringBootApplication
 @Configuration
 @EnableEurekaClient
-
+@EnableSwagger2
 public class TarifsApplication implements WebMvcConfigurer {
 
     public static void main(String[] args) {
@@ -36,7 +37,6 @@ public class TarifsApplication implements WebMvcConfigurer {
         return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
 
     }
-
 
     @Bean
     public ObjectMapper objectMapper() {

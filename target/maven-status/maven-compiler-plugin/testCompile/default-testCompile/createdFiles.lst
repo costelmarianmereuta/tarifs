@@ -1,1 +1,2 @@
-com\marian\tennis\api\tarifs\TarifsApplicationTests.class
+com\marian\tennis\api\tarifs\service\TarifServiceTest.class
+com\marian\tennis\api\tarifs\TarifsIt.class

@@ -22,15 +22,15 @@ public class Error extends RepresentationModel<Error> implements Serializable {
   private static final long serialVersionUID = 1L;
 
 
-    @JsonProperty("uuid")
+  @JsonProperty("uuid")
   private String uuid;
 
 
-    @JsonProperty("exceptionType")
+  @JsonProperty("exceptionType")
   private String exceptionType;
 
 
-    @JsonProperty("message")
+  @JsonProperty("message")
   private String message;
 
 }
