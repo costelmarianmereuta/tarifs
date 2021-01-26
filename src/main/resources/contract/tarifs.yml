@@ -1,0 +1,317 @@
+openapi: 3.0.0
+info:
+  title: Tarifs APIpo
+  description: This API manage the tarifs
+  version: 1.0.0
+servers:
+  - url: www.github.com
+    description: Optional server description, e.g. Main (production) server
+  - url: http://staging-api.example.com
+    description: Optional server description, e.g. Internal staging server for testing
+paths:
+  /tarifs:
+    get:
+      summary: Returns a list of tarifs.
+      description: donne la liste tarifs précisés | vous pouvez aussi rechercher par une les des noms des tarifs
+      parameters:
+        - name: tarifName
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+
+      responses:
+        '200': # status code
+          description: A list of tarifs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tarifs'
+        '400':
+          description: Bad request. The request was malformed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        '404':
+          description: Not found. The requested resource did not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: delete tarif
+      description: delete a tarif
+      parameters:
+        - in: path
+          name: name    # Note the name is the same as in the path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200': # status code
+          description: a message
+          content:
+            application/json:
+              schema:
+                type: string
+                example: message removed
+        '400':
+          description: Bad request. The request was malformed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        '404':
+          description: Not found. The requested resource did not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      summary: create tarif
+      description: creer un tarif a partir des tous ses champs
+      requestBody:
+        description: create tarif with all fields and terrains
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestBodyTarif'
+      responses:
+        '200': # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TarifResource"
+        '400':
+          description: Bad request. The request was malformed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        '404':
+          description: Not found. The requested resource did not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+
+
+
+  /tarifs/{name}:
+    get:
+      summary: Returns a list of tarifs.
+      description: Optional extended description in CommonMark or HTML.
+      parameters:
+        - in: path
+          name: name    # Note the name is the same as in the path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200': # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TarifResource"
+        '400':
+          description: Bad request. The request was malformed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        '404':
+          description: Not found. The requested resource did not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+components:
+  schemas:
+
+    Error:
+      properties:
+        uuid:
+          type: string
+          example: "65adc8f3-28e5-4772-8d1f-109616b01ae8"
+        exceptionType:
+          type: string
+          example: "ResourceNotFoundException"
+        message:
+          type: string
+          example: "Error message"
+
+    Tarifs:
+      properties:
+        tarifList:
+          type: array
+          items:
+            $ref: "#/components/schemas/TarifResource"
+
+
+    RequestBodyTarif:
+      type: object
+      required:
+        - name
+        - prix
+        - startDate
+        - endDate
+        - startTime
+        - endTime
+        - weekend
+        - actif
+        - specialTarif
+        - defaultTarif
+
+
+
+      properties:
+        name:
+          $ref: "#/components/schemas/Name"
+        prix:
+          type: number
+          format: float
+          example: 10.0
+        startDate:
+          type: string
+          format: date
+          example: 23-02-2020
+        endDate:
+          type: string
+          format: date
+          example: 23-02-2020
+        startTime:
+          type: string
+          pattern: (?:[01]\d|2[0123]):(?:[012345]\d)
+          example: 00:00
+        endTime:
+          type: string
+          pattern: (?:[01]\d|2[0123]):(?:[012345]\d)
+          example: 00:00
+        weekend:
+          type: boolean
+          default: false
+          example: true
+        actif:
+          type: boolean
+          default: false
+          example: true
+        specialTarif:
+          type: boolean
+          default: false
+          example: true
+        defaultTarif:
+          type: boolean
+          default: false
+          example: true
+        nameTerrain:
+          type: string
+          example: rolland garros
+
+    Terrains:
+      type: array
+      items:
+        $ref: "#/components/schemas/Terrain"
+
+
+    Terrain:
+      type: object
+      properties:
+        name:
+          type: string
+          example: rolland garros
+
+
+
+    Name:
+      type: string
+      example: Widget Adapter
+
+
+    TarifResource:
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/Name"
+        prix:
+          type: number
+          format: float
+          example: 10.0
+        startDate:
+          type: string
+          format: date
+          example: 23-02-2020
+        endDate:
+          type: string
+          format: date
+          example: 23-02-2020
+        startTime:
+          type: string
+          pattern: (?:[01]\d|2[0123]):(?:[012345]\d)
+          example: 00:00
+        endTime:
+          type: string
+          pattern: (?:[01]\d|2[0123]):(?:[012345]\d)
+          example: 00:00
+        weekend:
+          type: boolean
+          example: true
+        actif:
+          type: boolean
+          example: true
+        specialTarif:
+          type: boolean
+          example: true
+        defaultTarif:
+          type: boolean
+          example: true
+        terrains:
+          $ref: "#/components/schemas/Terrains"
+
+
+
+
+
+
+
+
+
+
+

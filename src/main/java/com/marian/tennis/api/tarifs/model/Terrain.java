@@ -21,8 +21,6 @@ import java.io.Serializable;
 public class Terrain extends RepresentationModel<Terrain> implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  
-
 
   @JsonProperty("name")
   private String name;

@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * TarifResource
  */
@@ -37,6 +36,7 @@ public class TarifResource extends RepresentationModel<TarifResource> implements
 
 
     @Valid
+
 
     @JsonProperty("startDate")
     private LocalDate startDate;
