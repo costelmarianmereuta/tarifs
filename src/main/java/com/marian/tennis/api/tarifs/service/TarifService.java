@@ -4,10 +4,8 @@ import com.marian.tennis.api.tarifs.entity.TarifsEntity;
 import com.marian.tennis.api.tarifs.model.RequestBodyTarif;
 import com.marian.tennis.api.tarifs.repositories.TarifRepository;
 import com.marian.tennis.api.tarifs.utils.Constants;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -25,14 +23,10 @@ import static com.marian.tennis.api.tarifs.utils.Constants.TARIF_NOT_FOUND;
 public class TarifService {
 
     private TarifRepository tarifsRepository;
-    private KafkaTemplate<String, String> kafkaTemplate;
-    @Value("${ms.kafkaTopicName}")
-    private String topicName;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    public TarifService(TarifRepository tarifsRepository, KafkaTemplate kafkaTemplate) {
+    public TarifService(TarifRepository tarifsRepository) {
         this.tarifsRepository = tarifsRepository;
-        this.kafkaTemplate = kafkaTemplate;
     }
 
     public TarifsEntity createTarif(RequestBodyTarif requestBodyTarif) {
@@ -66,7 +60,6 @@ public class TarifService {
             return tarifsRepository.findAllByNameIn(names);
         } else {
             return tarifsRepository.findAll();
-
         }
     }
 
@@ -104,7 +97,9 @@ public class TarifService {
     public String removeTarif(String name) {
         if (!ObjectUtils.isEmpty(tarifsRepository.findByName(name))) {
             tarifsRepository.deleteByName(name);
-            kafkaTemplate.send(topicName, name);
+
+            //make logic to delete tarif from terrain without kafka
+
             return Constants.TARIF_REMOVED + name;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, TARIF_NOT_FOUND);
