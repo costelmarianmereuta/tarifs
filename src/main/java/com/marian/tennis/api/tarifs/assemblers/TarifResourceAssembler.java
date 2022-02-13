@@ -23,8 +23,6 @@ public class TarifResourceAssembler implements RepresentationModelAssembler<Tari
                 .specialTarif(entity.getSpecialTarif())
                 .weekend(entity.isWeekend())
                 .build();
-
-
     }
 
 

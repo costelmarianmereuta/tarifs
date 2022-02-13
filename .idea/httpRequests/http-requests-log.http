@@ -1,0 +1,44 @@
+POST http://localhost:8083/tarifs
+Content-Type: application/json
+{:
+	"name": "tarif8",
+	"prix": "12",
+	"startDate": "2022-10-04",
+	"endDate": "2023-10-29",
+	"startTime": "08:00",
+	"endTime": "22:00"
+
+}
+
+<> 2022-02-02T113618.400.html
+
+###
+
+POST http://localhost:8083/tarifs
+Content-Type: application/json
+{:
+	"name": "tarif8",
+	"prix": "12",
+	"startDate": "2020-10-04",
+	"endDate": "2020-10-29",
+	"startTime": "08:00",
+	"endTime": "22:00"
+
+}
+
+<> 2022-02-02T113211.400.html
+
+###
+
+GET http://localhost:8083/tarifs
+
+<> 2022-02-02T112704.200.json
+
+###
+
+GET http://localhost:8083/tarifs/tarifs
+
+<> 2022-02-02T112634.404.json
+
+###
+

@@ -92,14 +92,11 @@ public class RequestBodyTarif extends RepresentationModel<RequestBodyTarif> impl
     @NotNull
 
 
-
-  @JsonProperty("defaultTarif")
-  private Boolean defaultTarif = false;
-
-  
+    @JsonProperty("defaultTarif")
+    private Boolean defaultTarif = false;
 
 
-  @JsonProperty("nameTerrain")
-  private String nameTerrain;
+//  @JsonProperty("nameTerrain")
+//  private String nameTerrain;
 
 }

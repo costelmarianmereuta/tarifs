@@ -1,0 +1,15 @@
+#GET http://localhost:8083/tarifs
+####
+POST http://localhost:8083/tarifs
+Content-Type: application/json
+{
+	"name": "tarif8",
+	"prix":"12",
+	"startDate": "2022-10-04",
+	"endDate": "2023-10-29",
+	"startTime":"08:00",
+	"endTime":"22:00"
+
+}
+
+###

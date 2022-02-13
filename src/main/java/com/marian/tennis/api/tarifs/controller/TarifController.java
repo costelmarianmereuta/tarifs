@@ -46,9 +46,9 @@ public class TarifController {
         return ResponseEntity.ok(tarifResourceAssembler.toModel(entity));
     }
 
-    @PutMapping
-    public ResponseEntity<TarifResource> updateTarif(@RequestBody @Valid RequestBodyTarif requestBodyTarif) {
-        TarifsEntity tarifsEntity = tarifService.updateTarif(requestBodyTarif);
+    @PutMapping("/{id}")
+    public ResponseEntity<TarifResource> updateTarif(@RequestBody @Valid RequestBodyTarif requestBodyTarif, @PathVariable Long id) {
+        TarifsEntity tarifsEntity = tarifService.updateTarif(requestBodyTarif, id);
         return ResponseEntity.ok(tarifResourceAssembler.toModel(tarifsEntity));
     }
 

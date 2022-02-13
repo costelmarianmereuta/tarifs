@@ -50,7 +50,7 @@ paths:
 
 
     post:
-      summary: create tarif
+      summary:  create tarif
       description: creer un tarif a partir des tous ses champs
       requestBody:
         description: create tarif with all fields and terrains
@@ -60,7 +60,7 @@ paths:
             schema:
               $ref: '#/components/schemas/RequestBodyTarif'
       responses:
-        '200': # status code
+        '200':    # status code
           description: A JSON array of user names
           content:
             application/json:
@@ -97,7 +97,7 @@ paths:
           required: true
           schema:
             type: integer
-      summary: update tarif
+      summary:  update tarif
       description: update an tarif
       requestBody:
         description: update tarif with all fields
@@ -107,7 +107,7 @@ paths:
             schema:
               $ref: '#/components/schemas/RequestBodyTarif'
       responses:
-        '200': # status code
+        '200':    # status code
           description: A JSON array of user names
           content:
             application/json:

@@ -8,13 +8,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 @Entity
 @ValidAfterDate
@@ -30,7 +28,7 @@ public class TarifsEntity {
 
     @Id
     @GeneratedValue()
-    private Integer idTarif;
+    private Long idTarif;
     @NotNull
     @Column(name = "name")
     private String name;
@@ -53,20 +51,16 @@ public class TarifsEntity {
     @NotNull
     @Column(name = "end_time")
     private LocalTime endTime;
-    @Column(name = "weekend")
-    @AssertFalse
+    @Column(name = "weekend", nullable = false)
     private boolean weekend;
-    @AssertFalse
-    @Column(name = "actif")
+    @Column(name = "actif", nullable = false)
     private boolean actif;
-    @Column(name = "special_tarif")
-    @AssertFalse
+    @Column(name = "special_tarif", nullable = false)
     private Boolean specialTarif;
-    @AssertFalse
-    @Column(name = "default_tarif")
+    @Column(name = "default_tarif", nullable = false)
     private Boolean defaultTarif;
 
-    @ElementCollection
-    private List<String> terrainsIds;
+//    @ElementCollection
+//    private List<String> terrainsIds;
 
 }

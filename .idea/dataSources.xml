@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL for 5.1 - tarifs@localhost" uuid="6914497a-6311-4a88-aa78-724ea1435535">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="tarifs" uuid="bac81513-3b86-4ec4-93a4-6225e2bedb27">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/tarifs</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3308/tarifs</jdbc-url>
     </data-source>
   </component>
 </project>

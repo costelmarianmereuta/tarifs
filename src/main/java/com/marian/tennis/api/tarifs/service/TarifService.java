@@ -12,9 +12,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
 
 import static com.marian.tennis.api.tarifs.utils.Constants.TARIF_NOT_FOUND;
 
@@ -63,8 +66,8 @@ public class TarifService {
         }
     }
 
-    public TarifsEntity updateTarif(RequestBodyTarif requestBodyTarif) {
-        TarifsEntity tarif = tarifsRepository.findByName(requestBodyTarif.getName());
+    public TarifsEntity updateTarif(RequestBodyTarif requestBodyTarif, Long id) {
+        TarifsEntity tarif = tarifsRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, TARIF_NOT_FOUND));
         if (!ObjectUtils.isEmpty(tarif)) {
             tarif.setActif(requestBodyTarif.getActif());
             tarif.setDefaultTarif(requestBodyTarif.getDefaultTarif());
@@ -77,8 +80,15 @@ public class TarifService {
             tarif.setSpecialTarif(requestBodyTarif.getSpecialTarif());
             tarif.setWeekend(requestBodyTarif.getWeekend());
             //check how update list
+            try {
+                tarifsRepository.save(tarif);
+                return tarif;
+            } catch (Exception e) {
+                Set<ConstraintViolation<?>> constraintViolations = ((ConstraintViolationException) e.getCause().getCause()).getConstraintViolations();
+                ConstraintViolation<?> constraintViolation = constraintViolations.stream().findFirst().orElse(null);
 
-            return tarif;
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "message: " + constraintViolation.getMessage() + " on the value: " + constraintViolation.getInvalidValue());
+            }
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, TARIF_NOT_FOUND);
         }
